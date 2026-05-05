@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Page Sections"
+  short_description: "Create and review product page sections"
+  default_prompt: "Use $product-page-sections to create or review a product-page section component."
