@@ -58,3 +58,4 @@ Use this skill for product-page section implementation and PR review in the Reac
 - Avoid hardcoded content or styling that should be props.
 - Use clear prop names aligned with repo conventions, such as `image`, `imageAlt`, `heading`, `description`, `text`, `label`, `cta`, `ctaText`, `ctaIcon`, `ctaUrl`, `stockLevel`, `stockLabel`, and `lowLabel`.
 - Do not add inline styles unless the existing pattern or runtime value requires it.
+- For CMS/runtime backgrounds that may be HEX or gradients, use Tailwind `[background:var(--token)]` or React `{ background: value }`; use `bg-(--token)` or `{ backgroundColor: value }` only for values guaranteed to be color-only.

@@ -31,7 +31,7 @@ import { ContentImageProps } from './interfaces/content-image';
 //#endregion imports
 
 //#region Default Classes
-const DEFAULT_SECTION_CLASS = 'w-full bg-(--content-image-bg-color) py-12 md:py-20';
+const DEFAULT_SECTION_CLASS = 'w-full [background:var(--content-image-bg-color)] py-12 md:py-20';
 const DEFAULT_IMAGE_WRAPPER_CLASS = 'flex justify-center items-center';
 const DEFAULT_IMAGE_CLASS = 'w-full h-auto object-contain max-h-96';
 const DEFAULT_CONTENT_CLASS = 'flex flex-col gap-6';

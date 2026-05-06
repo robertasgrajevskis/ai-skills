@@ -32,7 +32,7 @@ Use these rules when creating or reviewing product-page sections.
 - Use `classes` for nested element overrides.
 - Merge default and consumer classes with the repo's class merging pattern.
 - Keep styling in Tailwind CSS v4-compatible utility classes.
-- Prefer existing repo Tailwind v4 patterns, including CSS variable utilities such as `bg-(--token-name)` and `text-(--token-name)`.
+- Prefer existing repo Tailwind v4 patterns. Use `bg-(--token-name)` for color-only background tokens, but use `[background:var(--token-name)]` for configurable backgrounds that may contain gradients; likewise use React `{ background: value }` instead of `{ backgroundColor: value }` for runtime gradient-capable backgrounds.
 - Do not introduce Tailwind v3-only config assumptions unless the repo already supports them.
 - Avoid fixed text widths copied from design exports unless design explicitly requires them.
 

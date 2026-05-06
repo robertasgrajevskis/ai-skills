@@ -59,3 +59,4 @@ Write review output with findings first, ordered by severity. Include file/line 
 - Preserve specified spacing, sizing, and responsive breakpoints.
 - Use existing primitives unless doing so weakens semantics or creates awkward APIs.
 - Check that styling uses Tailwind CSS v4-compatible classes and follows existing repo syntax.
+- Check that CMS/runtime backgrounds that may contain gradients use CSS `background`, not `background-color`, `bg-(--token)`, or React `{ backgroundColor: value }`.
