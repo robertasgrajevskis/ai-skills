@@ -56,6 +56,8 @@ Use this skill for product-page section implementation and PR review in the Reac
 - `HowToUseStepsHorizontal` is the reference implementation for section CTA and stock/shipping rendering.
 - Prefer flat CTA props such as `cta`, `ctaLabel`, `ctaIcon`, `ctaHref`, `ctaBackgroundColor`, `ctaBackgroundGradient`, `ctaBackgroundHoverColor`, `ctaBackgroundHoverGradient`, `ctaTextColor`, and `ctaBorderColor`.
 - Use `CTAButton` with `StockAndShippingLevel`, explicit `showShipBy` / `showStockLevel` controls, and override slots such as `classes.ctaWrapper`, `classes.ctaButton`, `classes.shipByWrapper`, and `classes.stockLevelWrapper`.
+- Gallery-like section media assets follow committed docs in `src/sections/README.md`: `assetType` may be `image` or `video`, missing `assetType` defaults to `image`, image assets use image object fields, and video assets use `videoUrl`.
+- In reviews, do not flag `assetType` / `videoUrl` in touched sections as inconsistent with older image-only patterns. Still flag missing usable-URL filtering, missing mixed media Storybook coverage, and image/video accessibility regressions.
 
 ## Non-Negotiables
 
