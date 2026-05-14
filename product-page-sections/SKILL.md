@@ -44,18 +44,28 @@ Use this skill for product-page section implementation and PR review in the Reac
 
 1. Review changed files and nearby existing patterns before forming findings.
 2. Prioritize behavioral bugs, regressions, API risks, accessibility issues, missing Storybook coverage, and incompatible shared-component edits.
-3. Report findings first, ordered by severity, with file/line references.
-4. If no findings are found, state that and mention any residual test or design risks.
+3. Apply the repo's current refactor-phase guidance before raising compatibility findings. If committed docs say there are no existing consumers or that an API migration is intentional, do not flag breaking API or shared default changes unless the task explicitly requires compatibility.
+4. In ordinary branch review, do not flag older untouched sections for not matching new conventions. Mention them only when the branch touches them or the task is a full section audit/migration.
+5. Report findings first, ordered by severity, with file/line references.
+6. If no findings are found, state that and mention any residual test or design risks.
+
+## Current Repo Direction
+
+- Committed repo docs are the source of truth. If this skill conflicts with `AGENTS.md` or `src/sections/README.md`, the committed docs win.
+- Current product-page sections are in a pre-consumer refactor phase. Section APIs and shared defaults may change when the change aligns with the agreed direction.
+- `HowToUseStepsHorizontal` is the reference implementation for section CTA and stock/shipping rendering.
+- Prefer flat CTA props such as `cta`, `ctaLabel`, `ctaIcon`, `ctaHref`, `ctaBackgroundColor`, `ctaBackgroundGradient`, `ctaBackgroundHoverColor`, `ctaBackgroundHoverGradient`, `ctaTextColor`, and `ctaBorderColor`.
+- Use `CTAButton` with `StockAndShippingLevel`, explicit `showShipBy` / `showStockLevel` controls, and override slots such as `classes.ctaWrapper`, `classes.ctaButton`, `classes.shipByWrapper`, and `classes.stockLevelWrapper`.
 
 ## Non-Negotiables
 
 - Follow layer boundaries: atoms -> molecules -> organisms -> sections.
-- Preserve backward compatibility for existing shared atoms, molecules, and organisms.
+- Preserve backward compatibility for existing shared atoms, molecules, and organisms unless committed repo docs identify the work as part of a pre-consumer refactor or intentional migration.
 - Keep `className` for root styling and `classes` for nested element overrides.
 - Define default class constants near the top of TSX components.
 - Use semantic HTML and accessible image alt text.
 - Keep JSX readable; extract complex chunks into named helpers or components.
 - Avoid hardcoded content or styling that should be props.
-- Use clear prop names aligned with repo conventions, such as `image`, `imageAlt`, `heading`, `description`, `text`, `label`, `cta`, `ctaText`, `ctaIcon`, `ctaUrl`, `stockLevel`, `stockLabel`, and `lowLabel`.
+- Use clear prop names aligned with repo conventions, such as `image`, `imageAlt`, `heading`, `description`, `text`, `label`, `cta`, `ctaLabel`, `ctaIcon`, `ctaHref`, `stockLevel`, `stockLevelLabel`, and `stockLevelLowLabel`.
 - Do not add inline styles unless the existing pattern or runtime value requires it.
 - For CMS/runtime backgrounds that may be HEX or gradients, use Tailwind `[background:var(--token)]` or React `{ background: value }`; use `bg-(--token)` or `{ backgroundColor: value }` only for values guaranteed to be color-only.
