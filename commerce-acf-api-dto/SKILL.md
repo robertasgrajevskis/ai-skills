@@ -14,14 +14,16 @@ Use this skill when a CommerceCore template needs ACF JSON, a normalized API DTO
 3. For ACF Flexible Content rules, read [references/acf-flexible-content.md](references/acf-flexible-content.md).
 4. For REST controller, mapper, helper, and normalization rules, read [references/api-dto.md](references/api-dto.md).
 5. For Vite/React template and section-renderer conventions, read [references/frontend-template.md](references/frontend-template.md).
-6. When the task adds or changes shared React sections or their stories in this repo, also read `src/sections/README.md` and `STORYBOOK.md`.
-7. Preserve existing endpoints and templates unless the task explicitly asks for a breaking replacement.
-8. Validate with JSON parsing, PHP linting, route search, and frontend build when dependencies are available.
+6. When a template consumes `@commerce-core/react-components`, inspect the current installed component interfaces and committed React section docs before defining ACF fields or DTO props.
+7. When the task adds or changes shared React sections or their stories in this repo, also read `src/sections/README.md` and `STORYBOOK.md`.
+8. Preserve existing endpoints and templates unless the task explicitly asks for a breaking replacement.
+9. Validate with JSON parsing, PHP linting, route search, and frontend build when dependencies are available.
 
 ## Policy Precedence
 
 - Prefer committed repo docs first: `AGENTS.md`, `AI-CONTRIBUTING.md`, and any task-specific committed docs relevant to the template family.
 - Use this skill's references for CommerceCore-specific ACF, DTO, controller, and frontend wiring guidance.
+- Use current React component interfaces and committed React/product-section docs as the source of truth for section prop shape. Do not duplicate section-specific UI rules here when the React docs own them.
 - Treat repo-local `tmp/*` notes and other private notes as optional personal context only. They must not override committed repo policy.
 
 ## Defaults
@@ -31,5 +33,6 @@ Use this skill when a CommerceCore template needs ACF JSON, a normalized API DTO
 - Prefer parent-theme implementations unless the user names a child theme.
 - Keep controller methods thin and move section-specific DTO mapping into mapper classes.
 - Use admin-controlled Flexible Content row order as frontend section order.
+- During pre-consumer template refactors, remove stale ACF and DTO fallback names unless compatibility is explicitly required.
 - For image alt text, prefer ACF image fields with `return_format: array` and read the media alt via the shared image object helper; do not create separate ACF text fields only for alt text.
 - Treat new template families as future-extensible: add mapper classes instead of growing a monolithic controller.
