@@ -16,6 +16,8 @@ Use the closest existing Vite/React template as the starting point for dependenc
 - Include loading and error states.
 - Use `ThemeProvider` for variables and `LinkEnhancer` for link behavior when the project uses `@commerce-core/react-components`.
 - Render sections with a switch on `acf_fc_layout`; unknown layouts should render nothing.
+- Apply section-level runtime metadata, such as Product Page Builder `anchorId`, in the template section wrapper after content renders. Do not add shared React section props only to support CMS wrapper behavior.
+- Clean hash scrolling or URL cleanup may be implemented in the template runtime when marketing UX requires hash links to scroll without leaving the hash in the address bar.
 - Do not pass ACF-managed Tailwind/class override props unless the template explicitly owns design-system class controls.
 
 ## Component Mapping
@@ -24,5 +26,5 @@ Use the closest existing Vite/React template as the starting point for dependenc
 - Block-based sections receive `{ block: ... }`.
 - Direct-prop sections receive the props directly in `data`.
 - Keep DTO prop names identical to React prop names after translation-prefix removal.
-- Use `html-react-parser` anywhere DTO data contains WYSIWYG HTML so inline tags such as `<strong>` render instead of escaping.
+- Use the component library's rich-text renderer when available for DTO data that contains WYSIWYG HTML. Use `html-react-parser` only in templates that do not have a shared rich-text component.
 - Use all ready exported non-Quiz sections requested by the template, and exclude Quiz-only components unless the task asks for quiz support.

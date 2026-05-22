@@ -43,15 +43,20 @@ Use `//#region Default Classes` instead of `//#region constants` if the touched 
 - Include `className?: string`.
 - Include `classes?: { ... }` for nested overrides.
 - Return `null` when required repeated content is empty.
+- Do not include optional display-only content in required render guards. For example, an optional domain label should be conditionally rendered instead of making the whole section return `null`.
 
 ## Existing Useful Components
 
 - `Text` supports `as` for semantic tag control.
 - `Image` renders image sources and should be reused for image elements.
-- `SectionHeader` supports `headingAs`, optional divider visibility, and `subheadingPlacement`.
+- `SectionHeader` supports `headingAs`, sanitized rich headings through `headingHtml`, `showSubheading`, optional divider visibility through `showDivider`, and `subheadingPlacement`.
+- `CTAButton` treats empty string icons as missing and centers CTA text independently from a right-positioned icon.
+- `StockAndShippingLevel` supports `shipByText` with a `{date}` token plus `daysFromNow` and `shipByLocale` for generated ship-by copy.
 - `MarqueeText` is text-specific continuous motion.
 - `MarqueeImages` is image-specific continuous motion.
 - `GalleryCarousel` is interactive carousel behavior, not a marquee.
+- `ReviewCarouselMotion` is the auto-scrolling review carousel implementation.
+- `StickyCtaFloaterSection` is the public section pattern for sticky CTA, shipping, and stock UI.
 
 ## Storybook
 

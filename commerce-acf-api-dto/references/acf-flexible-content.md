@@ -8,6 +8,7 @@ Use ACF JSON in the theme's `acf-json` directory for template field groups. Add 
 - Use snake_case for every ACF field `name` value, including nested group and repeater fields; keep `tr_` prefixes snake_case as well. Do not use frontend camelCase prop names as ACF field names.
 - For builder templates, prefer one root Flexible Content field for ordered sections.
 - Every layout starts with `is_active`; API DTO mappers skip inactive rows.
+- For Product Page Builder layouts, add optional `section_anchor` near `is_active` when sections need editor-controlled hash targets. Instruct editors to enter the value without `#`, for example `reviews`, and to keep anchors unique per page.
 - Row order in Flexible Content is the page section order.
 - Update the root JSON `modified` timestamp whenever the JSON file changes.
 
