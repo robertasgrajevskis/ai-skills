@@ -1,0 +1,3 @@
+display_name: Git Workflow Policy
+short_description: Enforce team Git and PR conventions.
+default_prompt: Use this skill when working with Git branches, commits, pull requests, reviews, branch updates, or merge preparation.
