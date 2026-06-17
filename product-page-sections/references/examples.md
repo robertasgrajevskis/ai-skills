@@ -97,6 +97,28 @@ export const ContentImage: React.FC<ContentImageProps> = ({
 };
 ```
 
+### Theming the blueprint
+
+The local `--content-image-*` vars above must default to design-system tokens so any active theme applies. Keep colors out of `DEFAULT_*` and resolve them through a `buildVars()` map applied to the root `style`:
+
+```tsx
+function buildVars({
+  sectionBgColor,
+  headingTextColor,
+  textColor,
+}: Pick<ContentImageProps, 'sectionBgColor' | 'headingTextColor' | 'textColor'>): React.CSSProperties {
+  return {
+    '--content-image-bg-color': sectionBgColor ?? 'var(--theme-color-bg-page, #FFFFFF)',
+    '--content-image-heading-color': headingTextColor ?? 'var(--theme-color-heading-primary, #000000)',
+    '--content-image-text-color': textColor ?? 'var(--theme-color-text-primary, #333333)',
+  } as React.CSSProperties;
+}
+
+// <section className={...} style={buildVars({ sectionBgColor, headingTextColor, textColor })}>
+```
+
+Fallbacks stay neutral, each prop maps to one token, and an unset prop is omitted so the theme value survives. See `references/design-principles.md` and `THEMING.md`.
+
 ## ProductBenefitsSection Pattern
 
 - Direct typed section props.

@@ -36,6 +36,36 @@ Use these rules when creating or reviewing product-page sections.
 - Do not introduce Tailwind v3-only config assumptions unless the repo already supports them.
 - Avoid fixed text widths copied from design exports unless design explicitly requires them.
 
+## Theming (design-system color tokens)
+
+`src/checkout/theme.ts` defines a set of CSS custom properties (`--theme-color-*`) that registered themes (velvet, amber, cobalt, ember, sage, ocean, noir) populate at runtime. Sections must consume these tokens so any active theme applies automatically. `THEMING.md` is the committed source of truth; read it before touching colors.
+
+- Never put colors in `DEFAULT_*` classes — those hold structure only (padding, flex, radius, font-size). Colors live in `THEMED_*` constants or in a `buildVars()` map.
+- Every configurable color defaults to a token with a **neutral** fallback: `var(--theme-color-accent, #3B82F6)`, never a brand color as the fallback.
+- Map one style/color prop to exactly one token. Do not chain multiple props onto one token with `??`.
+- Omit a token entirely when its prop is `undefined` (don't write `undefined` into the style object) so the active theme value survives.
+
+Two equivalent patterns are in use across `src/sections`; match whichever the surrounding file uses:
+
+1. **`THEMED_*` class constants** (per `THEMING.md`) — color utilities reference tokens directly, merged with `DEFAULT_*` via `cn()`:
+
+   ```tsx
+   const DEFAULT_CARD_CLASS = 'rounded-xl border p-4 flex flex-col gap-2'; // no colors
+   const THEMED_CARD_CLASS = 'bg-[var(--theme-color-bg-raised,#FAFAFA)] border-[var(--theme-color-border-light,#E5E7EB)]';
+   <div className={cn(DEFAULT_CARD_CLASS, THEMED_CARD_CLASS)} />
+   ```
+
+2. **`buildVars()` local tokens** (e.g. `ContentImageSection.tsx`, `AboutProductCarouselSection.tsx`) — `DEFAULT_*` classes reference local section tokens, and a `buildVars()` function maps each color prop to `prop ?? var(--theme-color-*, neutralHex)`, applied via `style={buildVars(...)}`:
+
+   ```tsx
+   const DEFAULT_HEADING_CLASS = 'font-extrabold text-(--content-image-heading)';
+   function buildVars({ headingTextColor }): React.CSSProperties {
+     return {
+       '--content-image-heading': headingTextColor ?? 'var(--theme-color-heading-primary, #000000)',
+     } as React.CSSProperties;
+   }
+   ```
+
 ## Accessibility
 
 - Use semantic elements such as `section`, `article`, `ul`, `li`, `h2`, and `p`.

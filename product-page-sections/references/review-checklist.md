@@ -60,3 +60,13 @@ Write review output with findings first, ordered by severity. Include file/line 
 - Use existing primitives unless doing so weakens semantics or creates awkward APIs.
 - Check that styling uses Tailwind CSS v4-compatible classes and follows existing repo syntax.
 - Check that CMS/runtime backgrounds that may contain gradients use CSS `background`, not `background-color`, `bg-(--token)`, or React `{ backgroundColor: value }`.
+
+## Theming Checks
+
+Apply these to new sections and to colors in touched sections; do not flag untouched older sections (see SKILL.md "Review Workflow").
+
+- Configurable colors default to a design-system token, `var(--theme-color-*, fallback)`, rather than a hardcoded color.
+- Fallbacks are neutral (gray/blue), not brand colors.
+- `DEFAULT_*` classes carry no color utilities — colors live in `THEMED_*` constants or a `buildVars()` map.
+- Each color prop maps to exactly one token; no `??` chaining of multiple props onto one token.
+- Per-prop overrides write CSS custom properties (inline `style` / `buildVars`), and an unset prop leaves the theme value intact rather than writing `undefined`.
