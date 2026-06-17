@@ -14,7 +14,8 @@ Use the closest existing Vite/React template as the starting point for dependenc
 - Define TypeScript DTO types matching the PHP DTO.
 - Fetch `/api/v1/<dto-route>/{postId}` with `credentials: "same-origin"`.
 - Include loading and error states.
-- Use `ThemeProvider` for variables and `LinkEnhancer` for link behavior when the project uses `@commerce-core/react-components`.
+- Use `LinkEnhancer` for link behavior when the project uses `@commerce-core/react-components`.
+- Activate a theme by feeding `getCheckoutThemeVariables(themeName)` to `ThemeProvider`, or by injecting its kebab-cased output as `--theme-color-*` custom properties in a `<style>` block for non-React/static pages (see `THEMING.md`). `themeName` is one of `velvet`, `amber`, `cobalt`, `ember`, `sage`, `ocean`, `noir`. Despite its name, `getCheckoutThemeVariables` returns the shared design-system tokens used by all sections — product-page sections included — not checkout-only variables; use it (kebab-cased) rather than the raw `getThemeVariables`.
 - Render sections with a switch on `acf_fc_layout`; unknown layouts should render nothing.
 - Apply section-level runtime metadata, such as Product Page Builder `anchorId`, in the template section wrapper after content renders. Do not add shared React section props only to support CMS wrapper behavior.
 - Clean hash scrolling or URL cleanup may be implemented in the template runtime when marketing UX requires hash links to scroll without leaving the hash in the address bar.

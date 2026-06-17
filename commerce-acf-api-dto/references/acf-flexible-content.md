@@ -29,3 +29,4 @@ Use ACF JSON in the theme's `acf-json` directory for template field groups. Add 
 - Use WYSIWYG fields for rich admin-authored text that may need inline markup such as `<strong>`; set `toolbar: full` and `media_upload: 0`.
 - Simple obvious text fields can omit descriptions.
 - Keep ACF layout names aligned with DTO `acf_fc_layout` values and frontend switch cases.
+- Prefer relying on the active theme for section colors rather than exposing per-section color fields. Sections default their colors to `--theme-color-*` tokens, so the theme already styles them. Add color-override ACF/DTO fields only when design requires a section to deviate from the theme; keep them optional and map each to the matching section color prop. Token rules and prop names are owned by the React docs (`THEMING.md`).

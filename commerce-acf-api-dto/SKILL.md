@@ -24,6 +24,7 @@ Use this skill when a CommerceCore template needs ACF JSON, a normalized API DTO
 - Prefer committed repo docs first: `AGENTS.md`, `AI-CONTRIBUTING.md`, and any task-specific committed docs relevant to the template family.
 - Use this skill's references for CommerceCore-specific ACF, DTO, controller, and frontend wiring guidance.
 - Use current React component interfaces and committed React/product-section docs as the source of truth for section prop shape. Do not duplicate section-specific UI rules here when the React docs own them.
+- `THEMING.md` (in the React component repo) is the source of truth for theme activation and the `--theme-color-*` design-system tokens. Defer the token rules themselves to the React docs; this skill only covers wiring a theme into the template (see `references/frontend-template.md`).
 - Treat repo-local `tmp/*` notes and other private notes as optional personal context only. They must not override committed repo policy.
 
 ## Defaults
